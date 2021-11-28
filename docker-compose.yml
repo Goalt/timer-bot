@@ -2,7 +2,6 @@ version: "3.7"
 
 services:
   app:
-    depends_on: [ db ]
     build: .
     container_name: bot
     restart: always
