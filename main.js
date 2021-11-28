@@ -21,23 +21,16 @@ bot.onText(/\/timer (.+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const duration = parse(match[1]);
 
+    startTime = timeConverter(msg.date);
+    endTime = timeConverter(Math.floor((Date.now() + duration)/1000));
+
     function timerAlert() {
-        const text = `Alert, Start: ${timeConverter(msg.date)}, Finished: ${timeConverter(Date.now()/1000)}`
+        const text = `Alert, Start: ${startTime}, Finished: ${endTime}`;
         bot.sendMessage(chatId, text, {reply_to_message_id: msg.message_id});
     }
 
-    setTimeout(timerAlert, duration);
-});
-
-bot.onText(/\/timer (.+) (.+)/, (msg, match) => {
-    const chatId = msg.chat.id;
-    const duration = parse(match[1]);
-    const notificationText = match[2]
-
-    function timerAlert() {
-        const text = `${notificationText}, Start: ${timeConverter(msg.date)}, Finished: ${timeConverter(Date.now()/1000)}`
-        bot.sendMessage(chatId, text, {reply_to_message_id: msg.message_id});
-    }
+    let firstText = `Timer started, Start: ${startTime}, Finished: ${endTime}`;
+    bot.sendMessage(chatId, firstText, {reply_to_message_id: msg.message_id});
 
     setTimeout(timerAlert, duration);
 });
