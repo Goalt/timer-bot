@@ -7,4 +7,4 @@ services:
     container_name: bot
     restart: always
     environment:
-      - TOKEN_BOT=$TOKEN_BOT
+      - TIMER_BOT_KEY=$TIMER_BOT_KEY

@@ -1,7 +1,7 @@
 var parse = require('parse-duration');
 var TelegramBot = require('node-telegram-bot-api');
 
-const TOKEN_BOT = process.env.TOKEN_BOT;
+const TOKEN_BOT = process.env.TIMER_BOT_KEY;
 const bot = new TelegramBot(TOKEN_BOT, {polling: true});
 
 function timeConverter(UNIX_timestamp){
