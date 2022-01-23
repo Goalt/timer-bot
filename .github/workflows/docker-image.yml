@@ -19,7 +19,7 @@ jobs:
       run: |
         docker login ghcr.io -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/goalt/timer-bot:v0.9.6
+      run: docker build . --file Dockerfile --tag ghcr.io/goalt/timer-bot:$GITHUB_SHA
       
     - name: Docker Push
-      run: docker push ghcr.io/goalt/timer-bot:v0.9.6
+      run: docker push ghcr.io/goalt/timer-bot:$GITHUB_SHA
