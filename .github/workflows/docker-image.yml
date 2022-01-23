@@ -15,6 +15,9 @@ jobs:
       with:
         arch: aarch64
         distro: ubuntu18.04
+        run: |
+          uname -a
+          echo ::set-output name=uname::$(uname -a)
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
