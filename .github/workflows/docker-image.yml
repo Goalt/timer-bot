@@ -5,13 +5,16 @@ on:
     types: [published]
 
 jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
+  armv7_job:
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
+    - uses: uraimo/run-on-arch-action@v2
+      name: Run commands
+      id: runcmd
+      with:
+        arch: armv7
+        distro: ubuntu18.04
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -20,6 +23,5 @@ jobs:
         docker login ghcr.io -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Build the Docker image
       run: docker build --tag ghcr.io/goalt/timer-bot:$GITHUB_SHA .
-      
     - name: Docker Push
       run: docker push ghcr.io/goalt/timer-bot:$GITHUB_SHA
