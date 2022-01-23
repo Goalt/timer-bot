@@ -11,5 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build -t ghcr.io/goalt/timer-bot:${GITHUB_REF} .
+      run: |
+           docker build -t ghcr.io/goalt/timer-bot:${GITHUB_REF} . \
            docker push ghcr.io/goalt/timer-bot:${GITHUB_REF}
