@@ -10,6 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.Registry }}
     - name: Build the Docker image
       run: |
-           docker build -t ghcr.io/goalt/timer-bot:v0.9.6 . && docker push ghcr.io/goalt/timer-bot:v0.9.6
+           docker build -t ghcr.io/goalt/timer-bot:v0.9.6 . && echo $token | docker login ghcr.io -u Goalt --password-stdin && docker push ghcr.io/goalt/timer-bot:v0.9.6
