@@ -12,5 +12,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
-           docker build -t ghcr.io/goalt/timer-bot:v0.9.4 . \
-           docker push ghcr.io/goalt/timer-bot:v0.9.4
+           docker build -t ghcr.io/goalt/timer-bot:v0.9.5 .
