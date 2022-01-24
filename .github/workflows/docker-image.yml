@@ -53,4 +53,6 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64,linux/ppc64le
           push: true
-          tags: ${{ steps.repo_slug.outputs.result }}:latest
+          tags: 
+            ${{ steps.repo_slug.outputs.result }}:latest
+            ${{ steps.repo_slug.outputs.result }}:${GITHUB_SHA::8}
