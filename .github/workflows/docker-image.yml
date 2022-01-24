@@ -17,9 +17,7 @@ jobs:
         id: prep
         run: |
           SHORTREF=${GITHUB_SHA::8}
-          TAGS="latest,${SHORTREF}"
-          # Set output parameters.
-          echo ::set-output name=tags::${TAGS}
+          echo ::set-output name=tags::${SHORTREF}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
@@ -55,4 +53,4 @@ jobs:
           push: true
           tags: 
             ${{ steps.repo_slug.outputs.result }}:latest
-            ${{ steps.repo_slug.outputs.result }}:${GITHUB_SHA::8}
+            ${{ steps.repo_slug.outputs.result }}:${{ steps.prep.outputs.tags }}
