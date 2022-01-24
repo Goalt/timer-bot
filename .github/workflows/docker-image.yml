@@ -53,4 +53,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64,linux/ppc64le
           push: true
-          tags: ${{ steps.repo_slug.outputs.result }}:${{ steps.prep.outputs.tags }}
+          tags: ${{ steps.repo_slug.outputs.result }}:latest
