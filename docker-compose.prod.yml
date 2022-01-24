@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  app:
+    image: ghcr.io/goalt/timer-bot:$IMAGE_VERSION
+    container_name: bot
+    restart: always
+    environment:
+      - TIMER_BOT_KEY=$TIMER_BOT_KEY
