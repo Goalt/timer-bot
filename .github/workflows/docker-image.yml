@@ -53,4 +53,4 @@ jobs:
           push: true
           tags: 
             ${{ steps.repo_slug.outputs.result }}:latest
-            ${{ steps.repo_slug.outputs.result }}:${{ steps.prep.outputs.tags }}
+            # ${{ steps.repo_slug.outputs.result }}:${{ steps.prep.outputs.tags }}
