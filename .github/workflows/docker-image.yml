@@ -16,15 +16,10 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=${{ secrets.DOCKER_USER }}/${GITHUB_REPOSITORY#*/}
-          VERSION=latest
           SHORTREF=${GITHUB_SHA::8}
-
-          TAGS="${DOCKER_IMAGE}:latest,${DOCKER_IMAGE}:${SHORTREF}"
-
+          TAGS="latest,${SHORTREF}"
           # Set output parameters.
           echo ::set-output name=tags::${TAGS}
-          echo ::set-output name=docker_image::${DOCKER_IMAGE}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
