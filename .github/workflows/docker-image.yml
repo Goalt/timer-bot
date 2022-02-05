@@ -49,4 +49,4 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/ppc64le
           push: true
           tags: 
-            ${{ steps.repo_slug.outputs.result }}:${ steps.get_version.outputs.result }
+            ${{ steps.repo_slug.outputs.result }}:${{ steps.get_version.outputs.result }}
