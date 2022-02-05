@@ -12,6 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
         with:
@@ -45,4 +49,4 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/ppc64le
           push: true
           tags: 
-            ${{ steps.repo_slug.outputs.result }}:${{ GITHUB_REF#refs/tags/ }}
+            ${{ steps.repo_slug.outputs.result }}:${ steps.get_version.outputs.result }
