@@ -16,6 +16,9 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF}
 
+      - name: Echo
+        run: echo ${{ steps.get_version.outputs.result }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
         with:
