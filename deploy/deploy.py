@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     data = {
         "env": procEnv,
-        "prune": "true",
+        "prune": True,
         "stackFileContent": compose
     }
     r = requests.put('https://portainer.konkov.xyz/api/stacks/{}?endpointId=1'.format(stackId), data=json.dumps(data), headers={"Authorization": jwt})
