@@ -54,7 +54,7 @@ jobs:
       - name: Deploy
         run: |
           echo $PWD
-          python .github/.workflows/deploy/deploy.py
+          python deploy/deploy.py
         env:
           VERSION_TAG: ${{ steps.get_version.outputs.VERSION }}
           PORTAINER_USER: ${{ secrets.PORTAINER_USER }} 
