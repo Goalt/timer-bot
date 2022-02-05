@@ -29,7 +29,7 @@ bot.onText(/\/timer (.+)/, (msg, match) => {
         bot.sendMessage(chatId, text, {reply_to_message_id: msg.message_id});
     }
 
-    let firstText = `Try Timer started, Start: ${startTime}, Finished: ${endTime}`;
+    let firstText = `Timer started, Start: ${startTime}, Finished: ${endTime}`;
     bot.sendMessage(chatId, firstText, {reply_to_message_id: msg.message_id});
 
     setTimeout(timerAlert, duration);
