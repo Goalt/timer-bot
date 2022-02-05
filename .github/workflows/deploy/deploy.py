@@ -19,7 +19,7 @@ if __name__ == '__main__':
     envs = prod_env.environments
 
     # Read compose file
-    composeFile = f = open("docker-compose.prod.yml")
+    composeFile = f = open("deploy/docker-compose.prod.yml")
     compose = f.read()
     composeFile.close()
     
