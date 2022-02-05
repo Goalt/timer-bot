@@ -2,9 +2,8 @@
 name: 'build images'
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 jobs:
   docker:
@@ -13,11 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Prepare
-        id: prep
-        run: |
-          SHORTREF=${GITHUB_SHA::8}
-          echo ::set-output name=tags::${SHORTREF}
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
@@ -42,13 +39,6 @@ jobs:
         with:
           result-encoding: string
           script: return 'ghcr.io/${{ github.repository }}'.toLowerCase()
-      
-      - name: Sanitize tag
-        uses: actions/github-script@v4
-        id: repo_tag
-        with:
-          result-encoding: string
-          script: return '${{ steps.prep.outputs.tags }}'.toLowerCase()
 
       - name: Build
         uses: docker/build-push-action@v2
@@ -59,4 +49,4 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/ppc64le
           push: true
           tags: 
-            ${{ steps.repo_slug.outputs.result }}:latest,${{ steps.repo_slug.outputs.result }}:${{ steps.repo_tag.outputs.result }}
+            ${{ steps.repo_slug.outputs.result }}:${{ steps.get_version.outputs.result }}
