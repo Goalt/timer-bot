@@ -17,7 +17,7 @@ jobs:
         run: echo ::set-output name=VERSION::$GITHUB_REF
 
       - name: Echo
-        run: echo $GITHUB_REF
+        run: echo ${GITHUB_REF#refs/tags/}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
