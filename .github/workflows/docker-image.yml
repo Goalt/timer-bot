@@ -50,3 +50,13 @@ jobs:
           push: true
           tags: 
             ${{ steps.repo_slug.outputs.result }}:${{ steps.get_version.outputs.VERSION }}
+      
+      - name: Deploy
+        run: |
+          python deploy.py
+        env:
+          VERSION_TAG: ${{ steps.get_version.outputs.VERSION }}
+          PORTAINER_USER: ${{ secrets.PORTAINER_USER }} 
+          PORTAINER_PASSW: ${{ secrets.PORTAINER_PASSW }} 
+          PORTAINER_STACK_ID: ${{ secrets.PORTAINER_STACK_ID }}
+          TIMER_BOT_KEY: ${{ secrets.TIMER_BOT_KEY }}
