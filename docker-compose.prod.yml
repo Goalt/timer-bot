@@ -6,4 +6,4 @@ services:
     container_name: bot
     restart: always
     environment:
-      - TIMER_BOT_KEY=$TIMER_BOT_KEY
+      - TIMER_BOT_KEY=$DEPLOY_TIMER_BOT_KEY
